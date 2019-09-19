@@ -1,0 +1,33 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Cat detection</title>
+  <!-- Load TensorFlow.js -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+  <!-- Load MobileNet -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet"></script>
+  <!-- Load KNN Classifier -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/knn-classifier"></script>
+</head>
+
+<body>
+  <img src="assets/images/cat.jpeg" id="image" alt="cat laying down">
+  <script>
+    const img = document.getElementById('image');
+
+    const predictImage = async () => {
+      console.log("Model loading...");
+      const model = await mobilenet.load();
+      console.log("Model is loaded!")
+
+      const predictions = await model.classify(img);
+      console.log('Predictions: ', predictions);
+    }
+    predictImage();
+  </script>
+</body>
+
+</html>
